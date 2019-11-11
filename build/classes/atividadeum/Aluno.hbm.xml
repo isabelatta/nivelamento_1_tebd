@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/11/2019 17:26:03 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="atividadeum.Aluno" table="aluno" catalog="nivelamento_1" optimistic-lock="version">
+        <id name="aluMatricula" type="string">
+            <column name="alu_matricula" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="aluNome" type="string">
+            <column name="alu_nome" length="30" not-null="true" />
+        </property>
+        <set name="notas" table="nota" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="alu_matricula" length="10" not-null="true" />
+            </key>
+            <one-to-many class="atividadeum.Nota" />
+        </set>
+    </class>
+</hibernate-mapping>
